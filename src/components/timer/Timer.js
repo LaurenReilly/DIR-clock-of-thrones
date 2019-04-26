@@ -71,16 +71,19 @@ class Timer extends Component {
 
         return(
             <div>
-                <div>
-                    <h1>{hours}:{minutes}:{seconds}</h1>
-                    <button disabled={this.state.disabled} 
-                            onClick={() => this.start()}>Start</button>
-                    <button onClick={() => this.stop()}>Stop</button>
-                    <button onClick={() => this.reset()}>Reset</button>
+                <div hidden={!this.state.complete}>
+                    <div>
+                        <h1>Counting down from {this.state.input}</h1>
+                        <h1>{hours}:{minutes}:{seconds}</h1>
+                        <button disabled={this.state.disabled} 
+                                onClick={() => this.start()}>Start</button>
+                        <button onClick={() => this.stop()}>Stop</button>
+                        <button onClick={() => this.reset()}>Reset</button>
+                    </div>
+                    <input value ={this.state.input} 
+                            default="enter number to countdown from" type="text" onChange={(e) => {this.updateInput(e.target.value)}}>
+                    </input>
                 </div>
-                <input value ={this.state.input} 
-                        default="enter number to countdown from" type="text" onChange={(e) => {this.updateInput(e.target.value)}}>
-                </input>
                 <div hidden={this.state.complete}>
                     <h1>Timer Complete!</h1>
                     <button onClick={() => this.returnToTimer()}>Create Another Timer</button>
