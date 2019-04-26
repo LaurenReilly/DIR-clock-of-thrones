@@ -32,6 +32,14 @@ stop = () => {
     cancelAnimationFrame(this.request);
 }
 
+reset = () => {
+    this.setState({
+        disabled: false,
+        time: 0
+    })
+    cancelAnimationFrame(this.request);
+}
+
     render() {
         let seconds = Math.floor(this.state.time/60 % 60)
         let minutes = Math.floor(this.state.time/3600 % 60)
@@ -43,6 +51,7 @@ stop = () => {
                     <button disabled={this.state.disabled} 
                             onClick={() => this.start()}>Start</button>
                     <button onClick={() => this.stop()}>Stop</button>
+                    <button onClick={() => this.reset()}>Reset</button>
                 </div>
             </div>
         )
